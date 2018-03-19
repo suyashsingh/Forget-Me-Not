@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test Web App</title>
+	<title>Forget Me Not</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -11,9 +11,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="text-primary text-center">Dummy Text</h1>
+			<h1 class="text-primary text-center">Forget Me Not</h1>
 				<div class="well">
-					<h2 id = "questionPara">Test Question</h2>
+					<h2 id = "questionPara">Paste the test url and start the test.</h2>
 					<div id="optionDiv" class="invisible">
 					  <input type="radio" id="option1" value="option1" name="selection"><label id = "optionText1"></label><br>
 					  <input type="radio" id="option2" value="option1" name="selection"><label id = "optionText2"></label><br>
@@ -61,11 +61,14 @@ var correctCount = 0;
 
 // load button event handler
 document.getElementById("loadBtn").addEventListener("click", function() {
-	console.log("Load Button CLicked");
-	$.getJSON("https://api.myjson.com/bins/1gddfx", function (data) {
+	//console.log("Load Button CLicked");
+	document.getElementById("msgPara").innerHTML = "Loading test...";
+	var url = prompt("Enter the test url");
+	//$.getJSON("https://api.myjson.com/bins/1gddfx", function (data) {
+	$.getJSON(url, function (data) {
 		testJSON = data;
 		displayQuestion();
-		
+		document.getElementById("msgPara").innerHTML = "";
 		$("#optionDiv").removeClass("invisible").addClass("visible");
 		$('#loadBtn').attr('disabled',true).css('opacity',0.5);
 	});
